@@ -41,6 +41,14 @@ public class GroupeController {
                 .orElseThrow(() -> new ResourceNotFoundException("group does not exist with this id: "+ id));
         return ResponseEntity.ok(groupe);
     }
+    
+  //get name group by id rest api & return error if not found
+    @GetMapping("/groups/name/{id}")
+    public ResponseEntity<String> getNameGroupById(@PathVariable Long id){
+        Groupe groupe = groupeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("group does not exist with this id: "+ id));
+        return ResponseEntity.ok(groupe.getNameG());
+    }
     //update group rest api
     @PutMapping("/groups/{id}")
     public ResponseEntity<Groupe> updateStudent( @PathVariable Long id,@Valid @RequestBody Groupe groupDetails) {

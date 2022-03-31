@@ -43,7 +43,7 @@ public class Student {
 
 
 
-    @ManyToOne(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "codeG")
     //@Size(max=1, message="groups are one length characters!")
     private Groupe group;
@@ -74,7 +74,9 @@ public class Student {
     private Integer accessCode;
 
 
-
+    public Student() {
+    	super();
+    }
 
     public Student(String firstName, String lastName, String emailId, String password, Groupe group, Integer level, Integer accessCode) {
         super();
@@ -138,7 +140,7 @@ public class Student {
         this.accessCode = accessCode;
     }
 
-    @JsonIgnore
+    //@JsonIgnore !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Groupe getGroup() { return group; }
 
     public void setGroup(Groupe group) { this.group = group; }

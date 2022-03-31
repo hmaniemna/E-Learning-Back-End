@@ -14,7 +14,12 @@ import java.util.Collection;
 @Entity
 @Table(name="Groupes")
 public class Groupe implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long IdG;
 
@@ -76,7 +81,7 @@ public class Groupe implements Serializable {
         this.levelG = levelG;
     }
 
-    //@JsonIgnore
+    @JsonIgnore
     public Collection<Student> getStudentss() {
         return studentss;
     }
@@ -84,7 +89,7 @@ public class Groupe implements Serializable {
     public void setStudentss(Collection<Student> studentss) {
         this.studentss = studentss;
     }
-@JsonIgnore
+    @JsonIgnore
     public Collection<Teacher> getTeacherss() {
         return teacherss;
     }
