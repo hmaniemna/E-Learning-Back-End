@@ -2,7 +2,7 @@ package ElearningBack.controller;
 
 import ElearningBack.exception.ResourceNotFoundException;
 import ElearningBack.model.Groupe;
-import ElearningBack.model.Student;
+//import ElearningBack.model.Student;
 import ElearningBack.repository.GroupeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,13 +42,6 @@ public class GroupeController {
         return ResponseEntity.ok(groupe);
     }
     
-  //get name group by id rest api & return error if not found
-    @GetMapping("/groups/name/{id}")
-    public ResponseEntity<String> getNameGroupById(@PathVariable Long id){
-        Groupe groupe = groupeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("group does not exist with this id: "+ id));
-        return ResponseEntity.ok(groupe.getNameG());
-    }
     //update group rest api
     @PutMapping("/groups/{id}")
     public ResponseEntity<Groupe> updateStudent( @PathVariable Long id,@Valid @RequestBody Groupe groupDetails) {
