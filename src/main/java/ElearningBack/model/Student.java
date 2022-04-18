@@ -15,11 +15,9 @@ import java.util.Collection;
 @Table(name="students")
 @AllArgsConstructor
 @Data
-@NoArgsConstructor
 
 public class Student {
     @Id
-    //@NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long idS;
 
@@ -42,25 +40,23 @@ public class Student {
     private String emailId;
 
 
-
-    @ManyToOne(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "codeG")
-    //@Size(max=1, message="groups are one length characters!")
     private Groupe group;
 
+    /**
+     * Student courses. (Only the current year courses.)
+     */
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "student_course",
+            joinColumns = { @JoinColumn(name = "studentId") },
+            inverseJoinColumns = { @JoinColumn(name = "courseId"),
+            }
+    )
+    private Collection<Course> coursesS;
 
-   // @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
-   // @JoinTable( name = "T_Professors_Groups_Associations2",
-   //         joinColumns = @JoinColumn( name = "idProfessor" ),
-   //         inverseJoinColumns = @JoinColumn( name = "idGroup" ) )
-   // private Collection<Teacher> teachers;
-
-
-    @Column(name="lev_el")
-    //level not null and 3 levels
-    @NotNull
-    @Range(min=1,max = 3)
-    private Integer level;
 
     @Column(name="pass_word")
     //password not empty and have at least 3 characters
@@ -74,18 +70,18 @@ public class Student {
     private Integer accessCode;
 
 
+    public Student() {
+        super();
+    }
 
-
-    public Student(String firstName, String lastName, String emailId, String password, Groupe group, Integer level, Integer accessCode) {
+    public Student(String firstName, String lastName, String emailId, String password, Groupe group,  Integer accessCode) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
         this.password = password;
         this.group= group;
-        this.level= level;
         this.accessCode = accessCode;
-       // this.teachers = teachers;
     }
 
 
@@ -138,19 +134,19 @@ public class Student {
         this.accessCode = accessCode;
     }
 
-    @JsonIgnore
+    //@JsonIgnore !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Groupe getGroup() { return group; }
 
     public void setGroup(Groupe group) { this.group = group; }
 
-    public Integer getLevel() { return level; }
+    @JsonIgnore
+    public Collection<Course> getCoursesS() {
+        return coursesS;
+    }
 
-    public void setLevel(int level) { this.level = level; }
-
-   // @JsonIgnore
-   // public Collection<Teacher> getTeachers() {return teachers;}
-
-   // public void setTeachers(Collection<Teacher> teachers) {this.teachers = teachers;}
+    public void setCoursesS(Collection<Course> coursesS) {
+        this.coursesS = coursesS;
+    }
 }
 
 

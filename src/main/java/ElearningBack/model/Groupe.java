@@ -14,6 +14,11 @@ import java.util.Collection;
 @Entity
 @Table(name="Groupes")
 public class Groupe implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long IdG;
@@ -28,29 +33,33 @@ public class Groupe implements Serializable {
     private Integer levelG;
 
     @Column(name="studentsG")
-    @OneToMany(mappedBy ="group",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy ="group",fetch = FetchType.LAZY)
     private Collection<Student> studentss;
 
-    @ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.LAZY)
+
+    /**
+     * Group courses. (Only the current year courses.)
+     */
     @JsonIgnore
-    @JoinTable( name = "T_Professors_Groups_Associations1",
-            joinColumns = @JoinColumn( name = "idProfessor" ),
-            inverseJoinColumns = @JoinColumn( name = "idGroup" ) )
-    private Collection<Teacher> teacherss;
+    @ManyToMany
+    @JoinTable(
+            name = "group_course",
+            joinColumns = { @JoinColumn(name = "studentId") },
+            inverseJoinColumns = { @JoinColumn(name = "courseId"),
+            }
+    )
+    private Collection<Course> coursesG;
+
+
 
     public Groupe() {
     }
 
-    public Groupe( String nameG,Integer levelG, Collection<Student> studentss,Collection<Teacher> teacherss) {
 
-
+    public Groupe( String nameG,Integer levelG) {
         this.nameG=nameG;
         this.levelG=levelG;
-        this.studentss = studentss;
-        this.teacherss = teacherss;
     }
-
-
 
     public Long getIdG() {
         return IdG;
@@ -76,7 +85,7 @@ public class Groupe implements Serializable {
         this.levelG = levelG;
     }
 
-    //@JsonIgnore
+    @JsonIgnore
     public Collection<Student> getStudentss() {
         return studentss;
     }
@@ -84,12 +93,14 @@ public class Groupe implements Serializable {
     public void setStudentss(Collection<Student> studentss) {
         this.studentss = studentss;
     }
-@JsonIgnore
-    public Collection<Teacher> getTeacherss() {
-        return teacherss;
+
+
+
+    public Collection<Course> getCoursesG() {
+        return coursesG;
     }
 
-    public void setTeacherss(Collection<Teacher> teacherss) {
-        this.teacherss = teacherss;
+    public void setCoursesG(Collection<Course> coursesG) {
+        this.coursesG = coursesG;
     }
 }

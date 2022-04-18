@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:60040")
 @RequestMapping("/api/v1/")
 public class TeacherController {
 
@@ -44,16 +44,13 @@ public class TeacherController {
     @PutMapping("/teachers/{id}")
     public ResponseEntity<Teacher> updateTeacher( @PathVariable Long id,@Valid @RequestBody Teacher teacherDetails) {
         Teacher teacher = teacherRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("student not exists wih id :" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("teacher not exists wih id :" + id));
 
         teacher.setAccessCode(teacherDetails.getAccessCode());
         teacher.setEmailId(teacherDetails.getEmailId());
-        teacher.setFirstName(teacherDetails.getFirstName());
-        teacher.setLastName(teacherDetails.getLastName());
+        teacher.setFullName(teacherDetails.getFullName());
         teacher.setAccessCode(teacherDetails.getAccessCode());
         teacher.setPassword(teacherDetails.getPassword());
-        teacher.setGroupss(teacherDetails.getGroupss());
-        //teacher.setStudentss(teacherDetails.getStudentss());
 
         Teacher updatedTeacher = teacherRepository.save(teacher);
         return ResponseEntity.ok(updatedTeacher);

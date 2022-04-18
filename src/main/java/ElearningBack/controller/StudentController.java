@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:60040")
 @RequestMapping("/api/v1/")
 public class StudentController {
 
@@ -26,19 +26,6 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
-    //logging for student (problem here)
-    // @PostMapping("/students")
-    //  public ResponseEntity<?> connectStudent(@RequestBody Student studentDetails){
-    //    System.out.println(studentDetails);
-
-    //   Student student = studentRepository.findById(studentDetails.getIdS())
-    //          .orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + studentDetails.getIdS()));
-    //   if (student.getPassword().equals(studentDetails.getPassword()))
-    //      return ResponseEntity.ok(student);
-    //    else
-    //       return (ResponseEntity<?>) ResponseEntity.internalServerError();
-
-    // }
 
     //create a new student rest api
     @PostMapping("/students")
@@ -64,7 +51,6 @@ public class StudentController {
         student.setLastName(studentDetails.getLastName());
         student.setEmailId(studentDetails.getEmailId());
         student.setGroup(studentDetails.getGroup());
-        student.setLevel(studentDetails.getLevel());
         student.setPassword(studentDetails.getPassword());
         student.setAccessCode(studentDetails.getAccessCode());
       //  student.setTeachers(studentDetails.getTeachers());

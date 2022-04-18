@@ -1,6 +1,7 @@
 package ElearningBack.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -21,32 +22,27 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long IdT;
 
-    @Column(name="first_name")
+    @Column(name="full_name")
     @NotEmpty
-    @Size(min = 2, message ="Firstname should have at least 2 characters!")
-    private String firstName;
+    @Size(min = 5, message ="Fulltname should have at least 2 characters!")
+    private String fullName;
 
-    @Column(name="last_name")
-    @NotEmpty
-    @Size(min = 2, message ="Lastname should have at least 2 characters!")
-    private String lastName;
 
     @Column(name="email_id")
     @Email
     private String emailId;
 
 
-   // @ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.LAZY)
-   // @JoinTable( name = "T_Professors_Groups_Associations2",
-   //         joinColumns = @JoinColumn( name = "idProfs" ),
-    //        inverseJoinColumns = @JoinColumn( name = "idStudents" ) )
-   // private Collection<Student> studentss;
+    /**
+     * Courses that the teacher teaching.
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "teacher")
+    private Collection<Course> coursesT ;
 
-    @ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
-    @JoinTable( name = "T_Professors_Groups_Associations1",
-            joinColumns = @JoinColumn( name = "idProfessor" ),
-            inverseJoinColumns = @JoinColumn( name = "idGroup" ) )
-    private Collection<Groupe> groupss;
+    @ManyToOne
+    @JoinColumn(name = "codeG1")
+    private Groupe groupT;
 
 
     @Column(name="pass_word")
@@ -61,17 +57,17 @@ public class Teacher {
     private Integer accessCode;
 
     public Teacher() {
+        super();
     }
 
-    public Teacher(String firstName,String lastName,String emailId,String password,Integer accessCode, Collection<Groupe> groupss) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Teacher(String fullName,String emailId,String password,Integer accessCode) {
+        this.fullName = fullName;
         this.emailId = emailId;
         this.password = password;
         this.accessCode = accessCode;
-       // this.studentss = studentss;
-        this.groupss = groupss;
     }
+
+
 
     public Long getIdT() {
         return IdT;
@@ -81,21 +77,9 @@ public class Teacher {
         IdT = idT;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFullName() {return fullName; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public void setFullName(String fullName) {this.fullName = fullName;}
 
     public String getEmailId() {
         return emailId;
@@ -105,17 +89,10 @@ public class Teacher {
         this.emailId = emailId;
     }
 
-    //public Collection<Student> getStudentss() {return studentss;}
 
-   // public void setStudentss(Collection<Student> studentss) {this.studentss = studentss;}
+    public Groupe getGroupT() {return groupT;}
 
-    public Collection<Groupe> getGroupss() {
-        return groupss;
-    }
-
-    public void setGroupss(Collection<Groupe> groupss) {
-        this.groupss = groupss;
-    }
+    public void setGroupT(Groupe groupT) {this.groupT = groupT;}
 
     public String getPassword() {
         return password;
@@ -131,5 +108,13 @@ public class Teacher {
 
     public void setAccessCode(Integer accessCode) {
         this.accessCode = accessCode;
+    }
+
+    public Collection<Course> getCoursesT() {
+        return coursesT;
+    }
+
+    public void setCoursesT(Collection<Course> coursesT) {
+        this.coursesT = coursesT;
     }
 }

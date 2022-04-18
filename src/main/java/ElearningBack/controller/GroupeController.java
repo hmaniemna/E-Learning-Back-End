@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:60040")
 @RequestMapping("/api/v1/")
 public class GroupeController {
 
@@ -49,8 +49,6 @@ public class GroupeController {
 
         group.setNameG(groupDetails.getNameG());
         group.setLevelG(groupDetails.getLevelG());
-        group.setStudentss(groupDetails.getStudentss());
-        group.setTeacherss(groupDetails.getTeacherss());
 
         Groupe updatedGroup = groupeRepository.save(group);
         return ResponseEntity.ok(updatedGroup);
