@@ -1,6 +1,7 @@
 package ElearningBack.model;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,16 +12,14 @@ import javax.validation.constraints.*;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Collection;
 //import java.util.Collection;
 
 @Entity
 @Table(name="students")
 @AllArgsConstructor
 @Data
-<<<<<<< HEAD
-=======
 
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
 
 public class Student {
     @Id
@@ -46,15 +45,11 @@ public class Student {
     private String email;
 
 
-<<<<<<< HEAD
-    @ManyToOne
-    @JoinColumn(name = "codeG")
-=======
+
 
     @ManyToOne
     @JoinColumn(name = "idG")
     //@Size(max=1, message="groups are one length characters!")
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     private Groupe group;
 
     /**
@@ -71,12 +66,8 @@ public class Student {
     private Collection<Course> coursesS;
 
 
-<<<<<<< HEAD
-    @Column(name="pass_word")
-=======
 
     @Column(name="password")
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     //password not empty and have at least 3 characters
     @NotEmpty
     @Size(min=3, message="length of password minimum 3 characters!")
@@ -87,27 +78,16 @@ public class Student {
     @NotNull
     private Integer accessCode;
     
-    //@ManyToOne
-    //@JoinColumn(name = "idT")
-    //@Size(max=1, message="groups are one length characters!")
-   // private Collection<Teacher> teachers;
+
 
 
     public Student() {
         super();
     }
 
-<<<<<<< HEAD
-    public Student(String firstName, String lastName, String emailId, String password, Groupe group,  Integer accessCode) {
-=======
-    public Student() {
-    	super();
-    }
 
-    public Student(String firstName, String lastName, String email, String password, Groupe group, Integer accessCode
-    		//,Collection<Teacher> teachers
-    		) {
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
+    public Student(String firstName, String lastName, String email, String password, Groupe group, Integer accessCode) {
+
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -115,10 +95,6 @@ public class Student {
         this.password = password;
         this.group= group;
         this.accessCode = accessCode;
-<<<<<<< HEAD
-=======
-        //this.teachers = teachers;
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     }
 
 
@@ -170,17 +146,13 @@ public class Student {
     public void setAccessCode(int accessCode) {
         this.accessCode = accessCode;
     }
-<<<<<<< HEAD
 
-    //@JsonIgnore !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-=======
     
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     public Groupe getGroup() { return group; }
 
     public void setGroup(Groupe group) { this.group = group; }
 
-<<<<<<< HEAD
+
     @JsonIgnore
     public Collection<Course> getCoursesS() {
         return coursesS;
@@ -189,15 +161,7 @@ public class Student {
     public void setCoursesS(Collection<Course> coursesS) {
         this.coursesS = coursesS;
     }
-=======
 
-
-
-   //@JsonIgnore
-   // public Collection<Teacher> getTeachers() {return teachers;}
-
-    //public void setTeachers(Collection<Teacher> teachers) {this.teachers = teachers;}
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
 }
 
 
