@@ -2,7 +2,7 @@ package ElearningBack.controller;
 
 
 import ElearningBack.exception.ResourceNotFoundException;
-import ElearningBack.model.Student;
+//import ElearningBack.model.Student;
 import ElearningBack.model.Teacher;
 import ElearningBack.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +48,17 @@ public class TeacherController {
 
         teacher.setAccessCode(teacherDetails.getAccessCode());
         teacher.setEmailId(teacherDetails.getEmailId());
+<<<<<<< HEAD
         teacher.setFullName(teacherDetails.getFullName());
         teacher.setAccessCode(teacherDetails.getAccessCode());
         teacher.setPassword(teacherDetails.getPassword());
+=======
+        teacher.setFullName(teacherDetails.getFullName());;
+        teacher.setAccessCode(teacherDetails.getAccessCode());
+        teacher.setPassword(teacherDetails.getPassword());
+        teacher. setGroupT(teacherDetails.getGroupT());
+        //teacher.setStudentss(teacherDetails.getStudentss());
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
 
         Teacher updatedTeacher = teacherRepository.save(teacher);
         return ResponseEntity.ok(updatedTeacher);

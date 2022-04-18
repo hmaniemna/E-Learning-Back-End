@@ -1,16 +1,23 @@
 package ElearningBack.model;
 
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
+=======
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Collection;
+
 import javax.persistence.*;
+import javax.security.auth.Subject;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collection;
+//import java.util.Collection;
 
 @Entity
 @Table(name="teachers")
@@ -40,10 +47,23 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher")
     private Collection<Course> coursesT ;
 
+<<<<<<< HEAD
+=======
+    //@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
+   // @JsonIgnore
+    //@JoinTable( name = "T_Professors_Groups_Associations1",
+           // joinColumns = @JoinColumn( name = "idProfessor" ),
+           // inverseJoinColumns = @JoinColumn( name = "idGroup" ) )
+   // private Collection<Groupe> groupss;
+
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     @ManyToOne
     @JoinColumn(name = "codeG1")
     private Groupe groupT;
 
+    //@Column(name="subjectsT")
+    //@OneToMany(mappedBy="teachers",fetch=FetchType.EAGER)
+    //private Collection<Subject> subjectsT;
 
     @Column(name="pass_word")
     //password not empty and have at least 3 characters
@@ -60,15 +80,28 @@ public class Teacher {
         super();
     }
 
+<<<<<<< HEAD
     public Teacher(String fullName,String emailId,String password,Integer accessCode) {
+=======
+    public Teacher(String fullName,String emailId,String password,Integer accessCode
+    		//Collection<Subject> subjectsT
+    		) {
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
         this.fullName = fullName;
         this.emailId = emailId;
         this.password = password;
         this.accessCode = accessCode;
+<<<<<<< HEAD
     }
 
 
 
+=======
+       //this.subjectsT = subjectsT;
+    }
+
+
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     public Long getIdT() {
         return IdT;
     }
@@ -90,8 +123,14 @@ public class Teacher {
     }
 
 
+<<<<<<< HEAD
     public Groupe getGroupT() {return groupT;}
 
+=======
+
+    public Groupe getGroupT() {return groupT;}
+
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     public void setGroupT(Groupe groupT) {this.groupT = groupT;}
 
     public String getPassword() {
@@ -110,6 +149,7 @@ public class Teacher {
         this.accessCode = accessCode;
     }
 
+<<<<<<< HEAD
     public Collection<Course> getCoursesT() {
         return coursesT;
     }
@@ -118,3 +158,9 @@ public class Teacher {
         this.coursesT = coursesT;
     }
 }
+=======
+    //public Collection<Subject> getSubjectsT() {return subjectsT;}
+
+    //public void setSubjectsT(Collection<Subject> subjectsT) {this.subjectsT = subjectsT;}
+}
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474

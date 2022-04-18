@@ -1,8 +1,8 @@
 package ElearningBack.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.Range;
+//import org.hibernate.annotations.GenericGenerator;
+//import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -15,11 +15,19 @@ import java.util.Collection;
 @Table(name="Groupes")
 public class Groupe implements Serializable {
     /**
+<<<<<<< HEAD
      *
      */
     private static final long serialVersionUID = 1L;
 
     @Id
+=======
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long IdG;
 
@@ -93,11 +101,17 @@ public class Groupe implements Serializable {
     public void setStudentss(Collection<Student> studentss) {
         this.studentss = studentss;
     }
+<<<<<<< HEAD
 
 
 
     public Collection<Course> getCoursesG() {
         return coursesG;
+=======
+    @JsonIgnore
+    public Collection<Teacher> getTeacherss() {
+        return teacherss;
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
     }
 
     public void setCoursesG(Collection<Course> coursesG) {

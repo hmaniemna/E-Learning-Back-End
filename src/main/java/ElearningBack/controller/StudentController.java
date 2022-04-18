@@ -26,6 +26,39 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
+<<<<<<< HEAD
+=======
+    //logging for student (problem here)
+     //@PostMapping("/student")
+    //public ResponseEntity<?> connectStudent(@RequestBody Student studentDetails){
+       // System.out.println(studentDetails);
+
+     // Student student = studentRepository.findById(studentDetails.getIdS())
+             //.orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + studentDetails.getIdS()));
+      // if (student.getPassword().equals(studentDetails.getPassword()))
+         // return ResponseEntity.ok(student);
+     //  else
+         // return (ResponseEntity<?>) ResponseEntity.internalServerError();
+
+   // }
+     
+     
+    @GetMapping("/students/{email}/{password}")
+     public ResponseEntity<?> getStudentFromEmailAndPassword(@PathVariable String email, @PathVariable String password){
+         System.out.println(email+password);
+
+       
+   
+       Student student = studentRepository.getStudentFromEmailAndPassword(email, password);
+    		   //.orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + idS));
+       System.out.println(student);
+        //if (student.getPassword().equals(password))
+           return ResponseEntity.ok(student);
+        //else
+           //return (ResponseEntity<?>) ResponseEntity.internalServerError();
+
+     }
+>>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
 
     //create a new student rest api
     @PostMapping("/students")
