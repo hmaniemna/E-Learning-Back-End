@@ -25,7 +25,7 @@ import ElearningBack.message.ResponseMessage ;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:60040")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/")
 public class TestController {
     // define a location

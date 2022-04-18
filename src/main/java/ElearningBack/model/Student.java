@@ -147,7 +147,7 @@ public class Student {
         this.accessCode = accessCode;
     }
 
-    
+
     public Groupe getGroup() { return group; }
 
     public void setGroup(Groupe group) { this.group = group; }
