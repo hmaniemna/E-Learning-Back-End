@@ -123,11 +123,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getEmailId() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmailId(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

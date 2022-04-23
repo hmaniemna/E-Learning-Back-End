@@ -1,9 +1,11 @@
 package ElearningBack.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name="timetables")
@@ -19,36 +21,69 @@ public class TimeTable {
     /**
      * Day when course hold.
      */
-    @Column(name = "day", nullable = false)
-    private int day;
+    @Column(name = "hourS", nullable = false)
+    private int hourS;
+
+    @Column(name = "hourE", nullable = false)
+    private int hourE;
 
     /**
      * Time when course hold.
      */
     @Column(name = "lesson", nullable = false)
-    private int lessonNumber;
+    private int lessonLevel;
+
+
+
+    /**
+     * The course M.
+     */
+    @ManyToOne
+    private Course Monday;
+
+    /**
+     * The course T.
+     */
+    @ManyToOne
+    private Course Tusday;
+
+    /**
+     * The course W.
+     */
+    @ManyToOne
+    private Course Wednesday;
 
     /**
      * The course.
      */
     @ManyToOne
-    private Course course;
+    private Course Thirsday;
+
+    /**
+     * The course.
+     */
+    @ManyToOne
+    private Course Friday;
 
     /**
      * The group (one timetable to each group).
      */
-    @OneToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="group_id",referencedColumnName = "idG")
-    private Groupe group;
+    @JsonIgnore
+    @OneToMany(mappedBy="timecal", cascade= CascadeType.ALL)
+    private Collection<Groupe> group;
 
     public TimeTable() {
     }
 
-    public TimeTable(int lessonNumber,Groupe group,Course course,int day) {
-        this.lessonNumber = lessonNumber;
-        this.group = group;
-        this.course = course;
-        this.day = day;
+    public TimeTable(int lessonLevel,Course Monday,Course Tusday,Course Wednesday,Course Thirsday,Course Friday,int hourS,int hourE) {
+        this.lessonLevel = lessonLevel;
+        this.hourS=hourS;
+        this.hourE=hourE;
+        this.Monday = Monday;
+        this.Tusday=Tusday;
+        this.Wednesday=Wednesday;
+        this.Thirsday=Thirsday;
+        this.Friday=Friday;
     }
 
     public Long getIdTable() {
@@ -59,35 +94,76 @@ public class TimeTable {
         this.idTable = idTable;
     }
 
-    public int getDay() {
-        return day;
+    public int getHourS() {
+        return hourS;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setHourS(int hourS) {
+        this.hourS = hourS;
     }
 
-    public int getLessonNumber() {
-        return lessonNumber;
+    public int getHourE() {
+        return hourE;
     }
 
-    public void setLessonNumber(int lessonNumber) {
-        this.lessonNumber = lessonNumber;
+    public void setHourE(int hourE) {
+        this.hourE = hourE;
     }
 
-    public Course getCourse() {
-        return course;
+    public Course getMonday() {
+        return Monday;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setMonday(Course monday) {
+        Monday = monday;
     }
 
-    public Groupe getGroup() {
+    public Course getTusday() {
+        return Tusday;
+    }
+
+    public void setTusday(Course tusday) {
+        Tusday = tusday;
+    }
+
+    public Course getWednesday() {
+        return Wednesday;
+    }
+
+    public void setWednesday(Course wednesday) {
+        Wednesday = wednesday;
+    }
+
+    public Course getThirsday() {
+        return Thirsday;
+    }
+
+    public void setThirsday(Course thirsday) {
+        Thirsday = thirsday;
+    }
+
+    public Course getFriday() {
+        return Friday;
+    }
+
+    public void setFriday(Course friday) {
+        Friday = friday;
+    }
+
+    public int getLessonLevel() {
+        return lessonLevel;
+    }
+
+    public void setLessonLevel(int lessonLevel) {
+        this.lessonLevel = lessonLevel;
+    }
+
+    @JsonIgnore
+    public Collection<Groupe> getGroup() {
         return group;
     }
 
-    public void setGroup(Groupe group) {
+    public void setGroup(Collection<Groupe> group) {
         this.group = group;
     }
 }

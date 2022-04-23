@@ -66,7 +66,7 @@ public class StudentController {
 
         student.setFirstName(studentDetails.getFirstName());
         student.setLastName(studentDetails.getLastName());
-        student.setEmailId(studentDetails.getEmailId());
+        student.setEmail(studentDetails.getEmail());
         student.setGroup(studentDetails.getGroup());
         student.setPassword(studentDetails.getPassword());
         student.setAccessCode(studentDetails.getAccessCode());

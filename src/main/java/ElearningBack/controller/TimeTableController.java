@@ -57,10 +57,15 @@ public class TimeTableController {
         TimeTable timeTable = timeTableRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("timeTable not exists wih id :" + id));
 
-        timeTable.setCourse(timeTableDetails.getCourse());
-        timeTable.setDay(timeTableDetails.getDay());
-        timeTable.setLessonNumber(timeTableDetails.getLessonNumber());
-        timeTable.setGroup(timeTableDetails.getGroup());
+
+        timeTable.setHourS(timeTableDetails.getHourS());
+        timeTable.setHourE(timeTableDetails.getHourE());
+        timeTable.setMonday(timeTableDetails.getMonday());
+        timeTable.setTusday(timeTableDetails.getTusday());
+        timeTable.setWednesday(timeTableDetails.getWednesday());
+        timeTable.setThirsday(timeTableDetails.getThirsday());
+        timeTable.setFriday(timeTableDetails.getFriday());
+        timeTable.setLessonLevel(timeTableDetails.getLessonLevel());
 
         TimeTable updatedTimeTable = timeTableRepository.save(timeTable);
         return ResponseEntity.ok(updatedTimeTable);

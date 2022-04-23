@@ -45,7 +45,7 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher")
     private Collection<Course> coursesT ;
 
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "codeG1")
     private Groupe groupT;
@@ -97,7 +97,7 @@ public class Teacher {
 
 
 
-
+    @JsonIgnore
     public Groupe getGroupT() {return groupT;}
 
 

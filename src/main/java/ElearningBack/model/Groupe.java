@@ -53,6 +53,8 @@ public class Groupe implements Serializable {
     private Collection<Course> coursesG;
 
 
+    @ManyToOne
+    private TimeTable timecal;
 
     public Groupe() {
     }
@@ -97,12 +99,18 @@ public class Groupe implements Serializable {
     }
 
 
-
-    public Collection<Course> getCoursesG() {
-        return coursesG;}
-
+    public Collection<Course> getCoursesG() {return coursesG;}
 
     public void setCoursesG(Collection<Course> coursesG) {
         this.coursesG = coursesG;
+    }
+
+
+    public TimeTable getTimecal() {
+        return timecal;
+    }
+
+    public void setTimecal(TimeTable timecal) {
+        this.timecal = timecal;
     }
 }
