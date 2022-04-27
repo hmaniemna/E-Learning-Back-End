@@ -2,6 +2,7 @@ package ElearningBack.controller;
 
 
 import ElearningBack.exception.ResourceNotFoundException;
+import ElearningBack.model.Student;
 //import ElearningBack.model.Student;
 import ElearningBack.model.Teacher;
 import ElearningBack.repository.TeacherRepository;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:60040")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/")
 public class TeacherController {
 
@@ -30,6 +31,23 @@ public class TeacherController {
     @PostMapping("/teachers")
     public Teacher createTeacher(@Valid @RequestBody Teacher teacher){
         return teacherRepository.save(teacher);
+    }
+    
+    //login for a teacher
+    @GetMapping("/teachers/{email}/{password}")
+    public ResponseEntity<?> getStudentFromEmailAndPassword(@PathVariable String email, @PathVariable String password){
+        System.out.println(email+password);
+
+      
+  
+      Teacher teacher = teacherRepository.getTeacherFromEmailAndPassword(email, password);
+   		   //.orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + idS));
+      System.out.println(teacher);
+       //if (student.getPassword().equals(password))
+          return ResponseEntity.ok(teacher);
+       //else
+          //return (ResponseEntity<?>) ResponseEntity.internalServerError();
+
     }
 
     //get teacher by id rest api & return error if not found
@@ -48,17 +66,17 @@ public class TeacherController {
 
         teacher.setAccessCode(teacherDetails.getAccessCode());
         teacher.setEmailId(teacherDetails.getEmailId());
-<<<<<<< HEAD
+
         teacher.setFullName(teacherDetails.getFullName());
         teacher.setAccessCode(teacherDetails.getAccessCode());
         teacher.setPassword(teacherDetails.getPassword());
-=======
+
         teacher.setFullName(teacherDetails.getFullName());;
         teacher.setAccessCode(teacherDetails.getAccessCode());
         teacher.setPassword(teacherDetails.getPassword());
         teacher. setGroupT(teacherDetails.getGroupT());
         //teacher.setStudentss(teacherDetails.getStudentss());
->>>>>>> e41b315dbc39a4da608e82ed58affcc78ab56474
+
 
         Teacher updatedTeacher = teacherRepository.save(teacher);
         return ResponseEntity.ok(updatedTeacher);

@@ -16,14 +16,18 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long idA;
 
-    @Column(name="pass_word")
+    @Column(name="code")
+    private Integer code;
+
+    @Column(name="password")
     private String password;
 
-    public Admin(String password) {
+    public Admin(String password,Integer code) {
         super();
         this.password = password;
+        this.code=code;
     }
-    public Admin(){}
+    public Admin(){super();}
 
     public Long getIdA() {
         return idA;
@@ -41,5 +45,11 @@ public class Admin {
         this.password = password;
     }
 
+    public Integer getCode() {
+        return code;
+    }
 
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 }
