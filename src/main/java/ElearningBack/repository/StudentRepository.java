@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface StudentRepository extends JpaRepository<Student,Long> {
 
-    @Query(value ="Select * from students S where S.email_id=:email and S.pass_word=:password", nativeQuery=true)
+    @Query(value ="Select * from students S where S.email=:email and S.password=:password", nativeQuery=true)
     Student getStudentFromEmailAndPassword(@Param("email") String email,@Param("password") String password);
 	
     

@@ -32,7 +32,7 @@ public class Course implements Serializable{
     /**
      * Teacher who teach this subject.
      */
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name="teacher_id")
     private Teacher teacher;
@@ -40,16 +40,16 @@ public class Course implements Serializable{
     /**
      * Student who learn this subject.
      */
-    @JsonIgnore
+  /**  @JsonIgnore
     @ManyToMany(mappedBy = "coursesS", fetch = FetchType.LAZY)
     private Collection<Student> studentsss;
 
     /**
      * Groups who learn this subject.
-     */
+
     @JsonIgnore
     @ManyToMany(mappedBy = "coursesG", fetch = FetchType.EAGER)
-    private Collection<Groupe> groupsss;
+    private Collection<Groupe> groupsss; **/
 
     public Course(String title, int year, Teacher teacher) {
         this.title = title;
@@ -106,7 +106,7 @@ public class Course implements Serializable{
         this.year = year;
     }
 
-    @JsonIgnore
+
     public Teacher getTeacher() {
         return teacher;
     }
@@ -115,7 +115,7 @@ public class Course implements Serializable{
         this.teacher = teacher;
     }
 
-    @JsonIgnore
+   /** @JsonIgnore
     public Collection<Student> getStudents() {
         return studentsss;
     }
@@ -131,7 +131,7 @@ public class Course implements Serializable{
 
     public void setGroupsss(Collection<Groupe> groupsss) {
         this.groupsss = groupsss;
-    }
+    }**/
 
     @JsonIgnore
     public Collection<TimeTable> getLessonM() {return lessonM;}

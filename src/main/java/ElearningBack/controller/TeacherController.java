@@ -3,6 +3,7 @@ package ElearningBack.controller;
 
 import ElearningBack.exception.ResourceNotFoundException;
 //import ElearningBack.model.Student;
+import ElearningBack.model.Student;
 import ElearningBack.model.Teacher;
 import ElearningBack.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,22 @@ public class TeacherController {
     @GetMapping("/teachers")
     public List<Teacher> getAllTeachers(){return teacherRepository.findAll();}
 
+    //teacher login
+    @GetMapping("/teacher/{email}/{password}")
+    public ResponseEntity<?> getTeacherFromEmailAndPassword( @PathVariable String email , @PathVariable String password ){
+        System.out.println(email+password);
+
+
+
+        Teacher teacher = teacherRepository.getTeacherFromEmailAndPassword(email,password);
+       // .orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + id));
+        System.out.println(teacher);
+        //if (teacher.getAccessCode().equals(accesscode))
+        return ResponseEntity.ok(teacher);
+        //else
+      //  return (ResponseEntity<?>) ResponseEntity.internalServerError();
+
+    }
     //create a new teacher rest api
     @PostMapping("/teachers")
     public Teacher createTeacher(@Valid @RequestBody Teacher teacher){

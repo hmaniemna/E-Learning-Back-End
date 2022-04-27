@@ -68,9 +68,9 @@ public class TimeTable {
     /**
      * The group (one timetable to each group).
      */
-    @JsonIgnore
+   /** @JsonIgnore
     @OneToMany(mappedBy="timecal", cascade= CascadeType.ALL)
-    private Collection<Groupe> group;
+    private Collection<Groupe> group;**/
 
     public TimeTable() {
     }
@@ -158,12 +158,12 @@ public class TimeTable {
         this.lessonLevel = lessonLevel;
     }
 
-    @JsonIgnore
+   /** @JsonIgnore
     public Collection<Groupe> getGroup() {
         return group;
     }
 
     public void setGroup(Collection<Groupe> group) {
         this.group = group;
-    }
+    }**/
 }

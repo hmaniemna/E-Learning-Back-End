@@ -55,7 +55,7 @@ public class Student {
     /**
      * Student courses. (Only the current year courses.)
      */
-    @JsonIgnore
+  /**  @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "student_course",
@@ -63,7 +63,7 @@ public class Student {
             inverseJoinColumns = { @JoinColumn(name = "courseId"),
             }
     )
-    private Collection<Course> coursesS;
+    private Collection<Course> coursesS;**/
 
 
 
@@ -152,7 +152,7 @@ public class Student {
 
     public void setGroup(Groupe group) { this.group = group; }
 
-
+/**
     @JsonIgnore
     public Collection<Course> getCoursesS() {
         return coursesS;
@@ -160,7 +160,7 @@ public class Student {
 
     public void setCoursesS(Collection<Course> coursesS) {
         this.coursesS = coursesS;
-    }
+    }**/
 
 }
 

@@ -27,13 +27,13 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long IdT;
 
-    @Column(name="full_name")
+    @Column(name="fullname")
     @NotEmpty
     @Size(min = 5, message ="Fulltname should have at least 2 characters!")
     private String fullName;
 
 
-    @Column(name="email_id")
+    @Column(name="emailId")
     @Email
     private String emailId;
 
@@ -45,13 +45,13 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher")
     private Collection<Course> coursesT ;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "codeG1")
     private Groupe groupT;
 
 
-    @Column(name="pass_word")
+    @Column(name="password")
     //password not empty and have at least 3 characters
     @NotEmpty
     @Size(min=3, message="length of password minimum 3 characters!")
@@ -97,7 +97,7 @@ public class Teacher {
 
 
 
-    @JsonIgnore
+
     public Groupe getGroupT() {return groupT;}
 
 
@@ -119,6 +119,7 @@ public class Teacher {
         this.accessCode = accessCode;
     }
 
+    @JsonIgnore
     public Collection<Course> getCoursesT() {
         return coursesT;
     }
