@@ -1,9 +1,13 @@
 package ElearningBack.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -54,13 +58,12 @@ public class Teacher {
    // private Collection<Groupe> groupss;
 
 
+    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "codeG1")
     private Groupe groupT;
 
-    //@Column(name="subjectsT")
-    //@OneToMany(mappedBy="teachers",fetch=FetchType.EAGER)
-    //private Collection<Subject> subjectsT;
 
     @Column(name="pass_word")
     //password not empty and have at least 3 characters
@@ -83,7 +86,6 @@ public class Teacher {
     public Teacher(String fullName,String emailId,String password,Integer accessCode
     		//Collection<Subject> subjectsT
     		) {
-
         this.fullName = fullName;
         this.emailId = emailId;
         this.password = password;
@@ -114,7 +116,10 @@ public class Teacher {
 
 
 
+
+    @JsonIgnore
     public Groupe getGroupT() {return groupT;}
+
 
 
     public void setGroupT(Groupe groupT) {this.groupT = groupT;}
@@ -135,7 +140,6 @@ public class Teacher {
         this.accessCode = accessCode;
     }
 
-
     public Collection<Course> getCoursesT() {
         return coursesT;
     }
@@ -144,6 +148,7 @@ public class Teacher {
         this.coursesT = coursesT;
     }
 }
+
 
     //public Collection<Subject> getSubjectsT() {return subjectsT;}
 

@@ -1,6 +1,7 @@
 package ElearningBack.model;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ import java.util.Collection;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Collection;
 //import java.util.Collection;
 
 @Entity
@@ -79,15 +81,13 @@ public class Student {
     @NotNull
     private Integer accessCode;
     
-    //@ManyToOne
-    //@JoinColumn(name = "idT")
-    //@Size(max=1, message="groups are one length characters!")
-   // private Collection<Teacher> teachers;
+
 
 
     public Student() {
         super();
     }
+
 
 
     public Student(String firstName, String lastName, String email, String password, Groupe group, Integer accessCode
@@ -133,11 +133,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getEmailId() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmailId(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -157,7 +157,9 @@ public class Student {
         this.accessCode = accessCode;
     }
 
+
     //@JsonIgnore !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
     public Groupe getGroup() { return group; }
 
@@ -180,6 +182,7 @@ public class Student {
    // public Collection<Teacher> getTeachers() {return teachers;}
 
     //public void setTeachers(Collection<Teacher> teachers) {this.teachers = teachers;}
+
 
 }
 

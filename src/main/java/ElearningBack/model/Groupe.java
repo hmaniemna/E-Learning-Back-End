@@ -102,7 +102,11 @@ public class Groupe implements Serializable {
         return coursesG;}
 
 
+
     public void setCoursesG(Collection<Course> coursesG) {
         this.coursesG = coursesG;
     }
+
+
+   
 }

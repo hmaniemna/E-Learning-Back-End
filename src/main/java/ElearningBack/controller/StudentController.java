@@ -26,7 +26,6 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
-
     //logging for student (problem here)
      //@PostMapping("/student")
     //public ResponseEntity<?> connectStudent(@RequestBody Student studentDetails){
@@ -41,6 +40,7 @@ public class StudentController {
 
    // }
      
+
      
     @GetMapping("/students/{email}/{password}")
      public ResponseEntity<?> getStudentFromEmailAndPassword(@PathVariable String email, @PathVariable String password){
@@ -81,11 +81,10 @@ public class StudentController {
 
         student.setFirstName(studentDetails.getFirstName());
         student.setLastName(studentDetails.getLastName());
-        student.setEmailId(studentDetails.getEmailId());
+        student.setEmail(studentDetails.getEmail());
         student.setGroup(studentDetails.getGroup());
         student.setPassword(studentDetails.getPassword());
         student.setAccessCode(studentDetails.getAccessCode());
-      //  student.setTeachers(studentDetails.getTeachers());
 
         Student updatedStudent = studentRepository.save(student);
         return ResponseEntity.ok(updatedStudent);

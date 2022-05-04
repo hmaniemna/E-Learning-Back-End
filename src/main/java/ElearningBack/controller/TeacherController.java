@@ -77,6 +77,11 @@ public class TeacherController {
         teacher. setGroupT(teacherDetails.getGroupT());
         //teacher.setStudentss(teacherDetails.getStudentss());
 
+        teacher.setFullName(teacherDetails.getFullName());;
+        teacher.setAccessCode(teacherDetails.getAccessCode());
+        teacher.setPassword(teacherDetails.getPassword());
+        //teacher. setGroupT(teacherDetails.getGroupT());
+        teacher.setEmailId(teacherDetails.getEmailId());
 
         Teacher updatedTeacher = teacherRepository.save(teacher);
         return ResponseEntity.ok(updatedTeacher);
