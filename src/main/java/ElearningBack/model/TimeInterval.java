@@ -1,20 +1,16 @@
 package ElearningBack.model;
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Resource {
+public class TimeInterval {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long Id;
-	
 	String name;
-
 	public Long getId() {
 		return Id;
 	}
@@ -31,5 +27,4 @@ public class Resource {
 		this.name = name;
 	}
 
-	
 }

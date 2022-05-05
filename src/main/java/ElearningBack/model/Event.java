@@ -35,11 +35,11 @@ public class Event {
 	
 	@ManyToOne
 	@JsonIgnore
-	Resource resource;
+	TimeInterval TimeI;
 	
-	@JsonProperty("resource")
-	public Long getResourceId() {
-		return resource.getId();
+	@JsonProperty("TimeI")
+	public Long getTimeIntervalId() {
+		return TimeI.getId();
 	}
 
 	public Long getId() {
@@ -74,12 +74,12 @@ public class Event {
 		this.end = end;
 	}
 
-	public Resource getResource() {
-		return resource;
+	public TimeInterval getTimeInterval() {
+		return TimeI;
 	}
 
-	public void setResource(Resource resource) {
-		this.resource = resource;
+	public void setTimeInterval(TimeInterval TimeI) {
+		this.TimeI = TimeI;
 	}
 	
 	

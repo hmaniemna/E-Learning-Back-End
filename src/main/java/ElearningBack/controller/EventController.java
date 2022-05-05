@@ -1,30 +1,19 @@
 package ElearningBack.controller;
 
-
-import ElearningBack.exception.ResourceNotFoundException;
 import ElearningBack.model.Event;
-import ElearningBack.model.Resource;
+import ElearningBack.model.TimeInterval;
 import ElearningBack.repository.EventRepository;
-import ElearningBack.repository.ResourceRepository;
-
+import ElearningBack.repository.TimeIntervalRepository;
 //import org.daypilot.demo.angularscheduler.controller.MainController.EventDeleteParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-
 import javax.transaction.Transactional;
-import javax.validation.Valid;
-
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -35,7 +24,7 @@ public class EventController {
     EventRepository er;
     
     @Autowired
-    ResourceRepository rr;
+    TimeIntervalRepository ti;
 	
 	
     
@@ -49,6 +38,8 @@ public class EventController {
     @GetMapping("/events")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     Iterable<Event> events(@RequestParam("from") @DateTimeFormat(iso=ISO.DATE_TIME) LocalDateTime from, @RequestParam("to") @DateTimeFormat(iso=ISO.DATE_TIME) LocalDateTime to) {
+    	System.out.println(from);
+    	System.out.println(to);
     	return er.findBetween(from, to);    	
     }
     
@@ -57,17 +48,17 @@ public class EventController {
     @Transactional
     Event createEvent(@RequestBody EventCreateParams params) {
     	
-    	System.out.println(params.resourceId);
+    	System.out.println(params.TimeIId);
     	System.out.println(params.text+params.start.toString()+params.end.toString());
     	
-        Resource r = rr.findOne(params.resourceId); 
-        //System.out.println(r);
+        TimeInterval t = ti.findOne(params.TimeIId); 
+        System.out.println(t);
     	
         Event e = new Event();
     	e.setStart(params.start);
     	e.setEnd(params.end);
     	e.setText(params.text);
-    	e.setResource(r);
+    	e.setTimeInterval(t);
     	
     	er.save(e);
     	
@@ -79,7 +70,7 @@ public class EventController {
     	public LocalDateTime start; 
   		public LocalDateTime end;
 	  	public String text;
-		public Long resourceId;
+		public Long TimeIId;
     }
     
     
