@@ -40,7 +40,7 @@ public class StudentController {
 
    // }
      
-
+   
      
     @GetMapping("/students/{email}/{password}")
      public ResponseEntity<?> getStudentFromEmailAndPassword(@PathVariable String email, @PathVariable String password){
@@ -71,6 +71,17 @@ public class StudentController {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("student does not exist with this id: "+ id));
         return ResponseEntity.ok(student);
+    }
+    
+    
+    //set a student 
+    @GetMapping("/student")
+    public Long setStudentId( @RequestBody Student student) {
+    	 System.out.println(student);
+    	Long id = student.getIdS();
+    	 System.out.println(id);
+    	
+    	return studentRepository.getStudentId (id);
     }
 
     //update student rest api

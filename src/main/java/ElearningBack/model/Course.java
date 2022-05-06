@@ -1,5 +1,6 @@
 package ElearningBack.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +27,7 @@ public class Course implements Serializable{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	
     private Long idCourse;
 
     @Column(name="title")
@@ -31,8 +35,18 @@ public class Course implements Serializable{
     @Size(min = 2, message ="name should have at least 2 characters!")
     private String title;
 
-    @Column(name = "year", nullable = false)
-    private int year;
+    
+    @Column(name="StartDate")
+    @NotEmpty
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date StartDate;
+    
+    @Column (name="EndDate")
+    @NotEmpty
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date EndDate;
+    
+    
 
     /**
      * Teacher who teach this subject.
@@ -55,10 +69,11 @@ public class Course implements Serializable{
     @JsonIgnore
     @ManyToMany(mappedBy = "coursesG", fetch = FetchType.EAGER)
     private Collection<Groupe> groupsss;
+    
+    public Course() {}
 
-    public Course(String title, int year, Teacher teacher) {
+    public Course(String title, Teacher teacher) {
         this.title = title;
-        this.year = year;
         this.teacher = teacher;
     }
     /**
@@ -81,12 +96,21 @@ public class Course implements Serializable{
         this.title = title;
     }
 
-    public int getYear() {
-        return year;
+    
+    public Date getStartDate() {
+    	return StartDate;
     }
-
-    public void setYear(int year) {
-        this.year = year;
+    
+    public void setStartDate(Date startDate) {
+    	this.StartDate = startDate;
+    }
+    
+    public Date getEndDate() {
+    	return EndDate;
+    }
+    
+    public void setEndDate(Date endDate) {
+    	this.EndDate = endDate;
     }
 
     @JsonIgnore

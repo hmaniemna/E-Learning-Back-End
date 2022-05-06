@@ -11,6 +11,7 @@ public class TimeInterval {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long Id;
 	String name;
+
 	public Long getId() {
 		return Id;
 	}

@@ -48,7 +48,7 @@ public class CourseController {
                 .orElseThrow(() -> new ResourceNotFoundException("course not exists wih id :" + id));
 
         course.setTitle(courseDetails.getTitle());
-        course.setYear(courseDetails.getYear());
+        //course.setYear(courseDetails.getYear());
         course.setTeacher(courseDetails.getTeacher());
 
         Course updatedCourse = courseRepository.save(course);
