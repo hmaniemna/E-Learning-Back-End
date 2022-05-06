@@ -25,59 +25,37 @@ public class Course implements Serializable{
     @NotEmpty
     @Size(min = 2, message ="name should have at least 2 characters!")
     private String title;
+    @Column(name="description")
+    @NotEmpty
+    private String description;
 
     @Column(name = "year", nullable = false)
     private int year;
 
     /**
      * Teacher who teach this subject.
-     */
 
-    @ManyToOne
-    @JoinColumn(name="teacher_id")
-    private Teacher teacher;
 
     /**
      * Student who learn this subject.
      */
-  /**  @JsonIgnore
-    @ManyToMany(mappedBy = "coursesS", fetch = FetchType.LAZY)
-    private Collection<Student> studentsss;
+    /** @JsonIgnore
+     @ManyToMany(mappedBy = "coursesS", fetch = FetchType.LAZY)
+     private Collection<Student> studentsss;**/
 
     /**
      * Groups who learn this subject.
+     */
+    /**@JsonIgnore
+     @ManyToMany(mappedBy = "coursesG", fetch = FetchType.EAGER)
+     private Collection<Groupe> groupsss;**/
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "coursesG", fetch = FetchType.EAGER)
-    private Collection<Groupe> groupsss; **/
-
-    public Course(String title, int year, Teacher teacher) {
+    public Course(String title, int year, String descrip) {
         this.title = title;
         this.year = year;
-        this.teacher = teacher;
+       // this.teacher = teacher;
+        this.description = descrip ;
     }
-    /**
-     * Course time in Timetable.
-     */
-    @JsonIgnore
-    @OneToMany(mappedBy = "Monday")
-    private Collection<TimeTable> lessonM ;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "Tusday")
-    private Collection<TimeTable> lessonTu ;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "Wednesday")
-    private Collection<TimeTable> lessonW ;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "Thirsday")
-    private Collection<TimeTable> lessonTi ;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "Friday")
-    private Collection<TimeTable> lessonMF ;
 
     public Course() {
     }
@@ -98,6 +76,14 @@ public class Course implements Serializable{
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getYear() {
         return year;
     }
@@ -106,8 +92,7 @@ public class Course implements Serializable{
         this.year = year;
     }
 
-
-    public Teacher getTeacher() {
+   /** public Teacher getTeacher() {
         return teacher;
     }
 
@@ -115,46 +100,20 @@ public class Course implements Serializable{
         this.teacher = teacher;
     }
 
-   /** @JsonIgnore
+    /**@JsonIgnore
     public Collection<Student> getStudents() {
-        return studentsss;
+    return studentsss;
     }
 
     public void setStudents(Collection<Student> studentsss) {
-        this.studentsss = studentsss;
+    this.studentsss = studentsss;
     }
 
-    @JsonIgnore
     public Collection<Groupe> getGroupsss() {
-        return groupsss;
+    return groupsss;
     }
 
     public void setGroupsss(Collection<Groupe> groupsss) {
-        this.groupsss = groupsss;
+    this.groupsss = groupsss;
     }**/
-
-    @JsonIgnore
-    public Collection<TimeTable> getLessonM() {return lessonM;}
-
-    public void setLessonM(Collection<TimeTable> lessonM) {this.lessonM = lessonM;}
-
-    @JsonIgnore
-    public Collection<TimeTable> getLessonTu() {return lessonTu;}
-
-    public void setLessonTu(Collection<TimeTable> lessonTu) {this.lessonTu = lessonTu;}
-
-    @JsonIgnore
-    public Collection<TimeTable> getLessonW() {return lessonW;}
-
-    public void setLessonW(Collection<TimeTable> lessonW) {this.lessonW = lessonW;}
-
-    @JsonIgnore
-    public Collection<TimeTable> getLessonTi() {return lessonTi; }
-
-    public void setLessonTi(Collection<TimeTable> lessonTi) {this.lessonTi = lessonTi;}
-
-    @JsonIgnore
-    public Collection<TimeTable> getLessonMF() {return lessonMF;}
-
-    public void setLessonMF(Collection<TimeTable> lessonMF) {this.lessonMF = lessonMF; }
 }

@@ -1,7 +1,6 @@
 package ElearningBack.model;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,10 +8,13 @@ import lombok.Data;
 
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Collection;
+
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Collection;
 //import java.util.Collection;
 
 @Entity
@@ -50,24 +52,23 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "idG")
     //@Size(max=1, message="groups are one length characters!")
+
     private Groupe group;
 
     /**
      * Student courses. (Only the current year courses.)
      */
-  /**  @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "student_course",
-            joinColumns = { @JoinColumn(name = "studentId") },
-            inverseJoinColumns = { @JoinColumn(name = "courseId"),
-            }
-    )
-    private Collection<Course> coursesS;**/
-
-
-
+    @JsonIgnore
+     @ManyToMany
+     @JoinTable(
+     name = "student_course",
+     joinColumns = { @JoinColumn(name = "studentId") },
+     inverseJoinColumns = { @JoinColumn(name = "courseId"),
+     }
+     )
+     private Collection<Course> coursesS;
     @Column(name="password")
+
     //password not empty and have at least 3 characters
     @NotEmpty
     @Size(min=3, message="length of password minimum 3 characters!")
@@ -77,8 +78,11 @@ public class Student {
     //code access not null
     @NotNull
     private Integer accessCode;
-    
 
+    //@ManyToOne
+    //@JoinColumn(name = "idT")
+    //@Size(max=1, message="groups are one length characters!")
+    // private Collection<Teacher> teachers;
 
 
     public Student() {
@@ -86,7 +90,9 @@ public class Student {
     }
 
 
-    public Student(String firstName, String lastName, String email, String password, Groupe group, Integer accessCode) {
+    public Student(String firstName, String lastName, String email, String password, Groupe group, Integer accessCode
+                   //,Collection<Teacher> teachers
+    ) {
 
         super();
         this.firstName = firstName;
@@ -95,6 +101,10 @@ public class Student {
         this.password = password;
         this.group= group;
         this.accessCode = accessCode;
+
+
+        //this.teachers = teachers;
+
     }
 
 
@@ -123,11 +133,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
+    public String getEmailId() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmailId(String email) {
         this.email = email;
     }
 
@@ -147,21 +157,32 @@ public class Student {
         this.accessCode = accessCode;
     }
 
+    //@JsonIgnore !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     public Groupe getGroup() { return group; }
 
     public void setGroup(Groupe group) { this.group = group; }
 
-/**
+
     @JsonIgnore
     public Collection<Course> getCoursesS() {
-        return coursesS;
+    return coursesS;
     }
 
     public void setCoursesS(Collection<Course> coursesS) {
-        this.coursesS = coursesS;
-    }**/
+    this.coursesS = coursesS;
+    }
+
+
+
+
+    //@JsonIgnore
+    // public Collection<Teacher> getTeachers() {return teachers;}
+
+    //public void setTeachers(Collection<Teacher> teachers) {this.teachers = teachers;}
 
 }
+
+
 
 

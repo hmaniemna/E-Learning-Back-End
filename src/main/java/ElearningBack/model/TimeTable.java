@@ -37,31 +37,31 @@ public class TimeTable {
 
     /**
      * The course M.
-     */
+
     @ManyToOne
     private Course Monday;
 
     /**
      * The course T.
-     */
+
     @ManyToOne
     private Course Tusday;
 
     /**
      * The course W.
-     */
+
     @ManyToOne
     private Course Wednesday;
 
     /**
      * The course.
-     */
+
     @ManyToOne
     private Course Thirsday;
 
     /**
      * The course.
-     */
+
     @ManyToOne
     private Course Friday;
 
@@ -72,18 +72,28 @@ public class TimeTable {
     @OneToMany(mappedBy="timecal", cascade= CascadeType.ALL)
     private Collection<Groupe> group;**/
 
+   @OneToOne(cascade= CascadeType.ALL)
+   @JoinColumn(name="group_id",referencedColumnName = "idG")
+   private Groupe group;
+
+    @ManyToOne
+    private Course course;
+
     public TimeTable() {
     }
 
-    public TimeTable(int lessonLevel,Course Monday,Course Tusday,Course Wednesday,Course Thirsday,Course Friday,int hourS,int hourE) {
+
+    public TimeTable(int lessonLevel, int hourS, int hourE , Groupe group , Course course) {
         this.lessonLevel = lessonLevel;
         this.hourS=hourS;
         this.hourE=hourE;
-        this.Monday = Monday;
-        this.Tusday=Tusday;
-        this.Wednesday=Wednesday;
-        this.Thirsday=Thirsday;
-        this.Friday=Friday;
+        this.group=group;
+        this.course=course;
+       // this.Monday = Monday;
+       // this.Tusday=Tusday;
+       // this.Wednesday=Wednesday;
+        //this.Thirsday=Thirsday;
+       // this.Friday=Friday;
     }
 
     public Long getIdTable() {
@@ -109,7 +119,7 @@ public class TimeTable {
     public void setHourE(int hourE) {
         this.hourE = hourE;
     }
-
+/**
     public Course getMonday() {
         return Monday;
     }
@@ -148,7 +158,7 @@ public class TimeTable {
 
     public void setFriday(Course friday) {
         Friday = friday;
-    }
+    }**/
 
     public int getLessonLevel() {
         return lessonLevel;
@@ -158,12 +168,20 @@ public class TimeTable {
         this.lessonLevel = lessonLevel;
     }
 
-   /** @JsonIgnore
-    public Collection<Groupe> getGroup() {
+
+    public Groupe getGroup() {
         return group;
     }
 
-    public void setGroup(Collection<Groupe> group) {
+    public void setGroup(Groupe group) {
         this.group = group;
-    }**/
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }

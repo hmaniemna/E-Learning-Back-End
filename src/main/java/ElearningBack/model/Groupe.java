@@ -15,13 +15,13 @@ import java.util.Collection;
 @Table(name="Groupes")
 public class Groupe implements Serializable {
     /**
-<<<<<<< HEAD
+     <<<<<<< HEAD
      *
      */
     private static final long serialVersionUID = 1L;
 
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long IdG;
 
@@ -42,19 +42,17 @@ public class Groupe implements Serializable {
     /**
      * Group courses. (Only the current year courses.)
      */
-   /** @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "group_course",
-            joinColumns = { @JoinColumn(name = "studentId") },
-            inverseJoinColumns = { @JoinColumn(name = "courseId"),
-            }
-    )
-    private Collection<Course> coursesG;**/
+     @JsonIgnore
+     @ManyToMany
+     @JoinTable(
+     name = "group_course",
+     joinColumns = { @JoinColumn(name = "studentId") },
+     inverseJoinColumns = { @JoinColumn(name = "courseId"),
+     }
+     )
+     private Collection<Course> coursesG;
 
 
-  //  @ManyToOne
-   // private TimeTable timecal;
 
     public Groupe() {
     }
@@ -98,19 +96,14 @@ public class Groupe implements Serializable {
         this.studentss = studentss;
     }
 
-/**
-    public Collection<Course> getCoursesG() {return coursesG;}
-
-    public void setCoursesG(Collection<Course> coursesG) {
-        this.coursesG = coursesG;
-    }**/
 
 
-    //public TimeTable getTimecal() {
-      //  return timecal;
-  // }
+    public Collection<Course> getCoursesG() {
+     return coursesG;}
 
-   //public void setTimecal(TimeTable timecal) {
-      //  this.timecal = timecal;
-   // }
+
+     public void setCoursesG(Collection<Course> coursesG) {
+     this.coursesG = coursesG;
+
+}
 }

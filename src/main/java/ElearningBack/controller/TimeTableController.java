@@ -60,12 +60,14 @@ public class TimeTableController {
 
         timeTable.setHourS(timeTableDetails.getHourS());
         timeTable.setHourE(timeTableDetails.getHourE());
-        timeTable.setMonday(timeTableDetails.getMonday());
-        timeTable.setTusday(timeTableDetails.getTusday());
-        timeTable.setWednesday(timeTableDetails.getWednesday());
-        timeTable.setThirsday(timeTableDetails.getThirsday());
-        timeTable.setFriday(timeTableDetails.getFriday());
+       // timeTable.setMonday(timeTableDetails.getMonday());
+        //timeTable.setTusday(timeTableDetails.getTusday());
+        //timeTable.setWednesday(timeTableDetails.getWednesday());
+        //timeTable.setThirsday(timeTableDetails.getThirsday());
+       // timeTable.setFriday(timeTableDetails.getFriday());
         timeTable.setLessonLevel(timeTableDetails.getLessonLevel());
+        timeTable.setCourse(timeTableDetails.getCourse());
+        timeTable.setGroup(timeTableDetails.getGroup());
 
         TimeTable updatedTimeTable = timeTableRepository.save(timeTable);
         return ResponseEntity.ok(updatedTimeTable);

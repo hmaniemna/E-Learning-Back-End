@@ -81,6 +81,11 @@ public class FileController {
     }
 
     @GetMapping("/files/{id}")
+
+
+
+
+    
     public ResponseEntity<byte[]> getFile(@PathVariable  Long id) {
         File fileDB = storageService.getFile(id);
 

@@ -20,11 +20,11 @@ public class Event {
     
     @Column(name="dayEvent")
     @NotNull
-    private Integer dayEvent;
+    private String dayEvent;
     
     @Column(name="monthEvent")
-    @NotNull
-    private Integer monthEvent;
+    @NotEmpty
+    private String monthEvent;
 
     @Column(name="yearEvent")
     @NotNull
@@ -43,14 +43,14 @@ public class Event {
     private String link;
 
     @Column(name="Duration")
-    @NotNull
-    private Integer Duration;
+    @NotEmpty
+    private String Duration;
 
     public Event() {
         super();
     }
 
-    public Event(Integer yearEvent,Integer dayEvent,Integer monthEvent,String description,String link,String nameEvent,Integer Duration) {
+    public Event(Integer yearEvent,String dayEvent,String monthEvent,String description,String link,String nameEvent,String Duration) {
         this.dayEvent = dayEvent;
         this.monthEvent = monthEvent;
         this.yearEvent = yearEvent;
@@ -68,19 +68,19 @@ public class Event {
         this.idEvent = idEvent;
     }
 
-    public Integer getDayEvent() {
+    public String getDayEvent() {
         return dayEvent;
     }
 
-    public void setDayEvent(Integer dayEvent) {
+    public void setDayEvent(String dayEvent) {
         this.dayEvent = dayEvent;
     }
 
-    public Integer getMonthEvent() {
+    public String getMonthEvent() {
         return monthEvent;
     }
 
-    public void setMonthEvent(Integer monthEvent) {
+    public void setMonthEvent(String monthEvent) {
         this.monthEvent = monthEvent;
     }
 
@@ -116,11 +116,11 @@ public class Event {
         this.nameEvent = nameEvent;
     }
 
-    public Integer getDuration() {
+    public String getDuration() {
         return Duration;
     }
 
-    public void setDuration(Integer Duration) {
+    public void setDuration(String Duration) {
         Duration = Duration;
     }
 }

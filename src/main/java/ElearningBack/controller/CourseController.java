@@ -41,6 +41,21 @@ public class CourseController {
         return ResponseEntity.ok(course);
     }
 
+    @GetMapping("/courselist/{teacherid}")
+    public ResponseEntity<?> getCourseByteacherId(@PathVariable Long teacherid) {
+        System.out.println(teacherid);
+
+
+        List<Course> course = courseRepository.getcoursebyteacher(teacherid);
+        //.orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + idS));
+        System.out.println(course);
+        //if (student.getPassword().equals(password))
+        return ResponseEntity.ok(course);
+        //else
+        //return (ResponseEntity<?>) ResponseEntity.internalServerError();**/
+
+    }
+
     //update course rest api
     @PutMapping("/courses/{id}")
     public ResponseEntity<Course> updateCourse( @PathVariable Long id,@Valid @RequestBody Course courseDetails) {
@@ -49,7 +64,8 @@ public class CourseController {
 
         course.setTitle(courseDetails.getTitle());
         course.setYear(courseDetails.getYear());
-        course.setTeacher(courseDetails.getTeacher());
+       // course.setTeacher(courseDetails.getTeacher());
+        course.setDescription(courseDetails.getDescription());
 
         Course updatedCourse = courseRepository.save(course);
         return ResponseEntity.ok(updatedCourse);
