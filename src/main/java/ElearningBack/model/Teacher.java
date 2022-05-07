@@ -1,12 +1,8 @@
 package ElearningBack.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,12 +41,14 @@ public class Teacher {
     /**
      * Courses that the teacher teaching.
      */
-    @JsonIgnore
-    @OneToMany(mappedBy = "teacher")
+    //@JsonIgnore
+    @OneToMany(targetEntity = Course.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="teacher_course",referencedColumnName = "idT")
     private Collection<Course> coursesT ;
 
 
     //@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
+
    // @JsonIgnore
     //@JoinTable( name = "T_Professors_Groups_Associations1",
            // joinColumns = @JoinColumn( name = "idProfessor" ),
@@ -60,10 +58,20 @@ public class Teacher {
 
     @JsonIgnore
 
+    // @JsonIgnore
+    //@JoinTable( name = "T_Professors_Groups_Associations1",
+    // joinColumns = @JoinColumn( name = "idProfessor" ),
+    // inverseJoinColumns = @JoinColumn( name = "idGroup" ) )
+    // private Collection<Groupe> groupss;
+
+
     @ManyToOne
     @JoinColumn(name = "codeG1")
     private Groupe groupT;
 
+    //@Column(name="subjectsT")
+    //@OneToMany(mappedBy="teachers",fetch=FetchType.EAGER)
+    //private Collection<Subject> subjectsT;
 
     @Column(name="pass_word")
     //password not empty and have at least 3 characters
@@ -84,8 +92,10 @@ public class Teacher {
 
 
     public Teacher(String fullName,String emailId,String password,Integer accessCode
+
     		//Collection<Subject> subjectsT
     		) {
+
         this.fullName = fullName;
         this.emailId = emailId;
         this.password = password;
@@ -117,7 +127,9 @@ public class Teacher {
 
 
 
+
     @JsonIgnore
+
     public Groupe getGroupT() {return groupT;}
 
 
@@ -140,6 +152,7 @@ public class Teacher {
         this.accessCode = accessCode;
     }
 
+
     public Collection<Course> getCoursesT() {
         return coursesT;
     }
@@ -154,4 +167,9 @@ public class Teacher {
 
     //public void setSubjectsT(Collection<Subject> subjectsT) {this.subjectsT = subjectsT;}
 
+
+
+//public Collection<Subject> getSubjectsT() {return subjectsT;}
+
+//public void setSubjectsT(Collection<Subject> subjectsT) {this.subjectsT = subjectsT;}
 

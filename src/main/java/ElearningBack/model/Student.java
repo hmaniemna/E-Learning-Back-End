@@ -1,7 +1,6 @@
 package ElearningBack.model;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -16,7 +15,6 @@ import java.util.Collection;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Collection;
 //import java.util.Collection;
 
 @Entity
@@ -48,9 +46,7 @@ public class Student {
     @Email
     private String email;
 
-
-
-
+    
     @ManyToOne
     @JoinColumn(name = "idG")
     //@Size(max=1, message="groups are one length characters!")
@@ -60,15 +56,18 @@ public class Student {
     /**
      * Student courses. (Only the current year courses.)
      */
-    @JsonIgnore
+    /**@JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "student_course",
             joinColumns = { @JoinColumn(name = "studentId") },
             inverseJoinColumns = { @JoinColumn(name = "courseId"),
             }
-    )
-    private Collection<Course> coursesS;
+    )*/
+    
+    
+
+
     @Column(name="password")
 
     //password not empty and have at least 3 characters
@@ -80,8 +79,11 @@ public class Student {
     //code access not null
     @NotNull
     private Integer accessCode;
-    
 
+    //@ManyToOne
+    //@JoinColumn(name = "idT")
+    //@Size(max=1, message="groups are one length characters!")
+    // private Collection<Teacher> teachers;
 
 
     public Student() {
@@ -89,10 +91,9 @@ public class Student {
     }
 
 
-
     public Student(String firstName, String lastName, String email, String password, Groupe group, Integer accessCode
-    		//,Collection<Teacher> teachers
-    		) {
+                   //,Collection<Teacher> teachers
+    ) {
 
         super();
         this.firstName = firstName;
@@ -133,11 +134,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
+    public String getEmailId() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmailId(String email) {
         this.email = email;
     }
 
@@ -157,6 +158,7 @@ public class Student {
         this.accessCode = accessCode;
     }
 
+    //@JsonIgnore !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     //@JsonIgnore !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -165,15 +167,6 @@ public class Student {
 
     public void setGroup(Groupe group) { this.group = group; }
 
-
-    @JsonIgnore
-    public Collection<Course> getCoursesS() {
-        return coursesS;
-    }
-
-    public void setCoursesS(Collection<Course> coursesS) {
-        this.coursesS = coursesS;
-    }
 
 
 
@@ -184,6 +177,13 @@ public class Student {
     //public void setTeachers(Collection<Teacher> teachers) {this.teachers = teachers;}
 
 
+    //@JsonIgnore
+    // public Collection<Teacher> getTeachers() {return teachers;}
+
+    //public void setTeachers(Collection<Teacher> teachers) {this.teachers = teachers;}
+
 }
+
+
 
 

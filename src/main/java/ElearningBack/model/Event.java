@@ -1,6 +1,16 @@
 package ElearningBack.model;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+
 import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +37,7 @@ public class Event {
 	@JsonIgnore
 	TimeInterval TimeI;
 	
-	//@JsonProperty("TimeI")
+	@JsonProperty("TimeI")
 	public Long getTimeIntervalId() {
 		return TimeI.getId();
 	}

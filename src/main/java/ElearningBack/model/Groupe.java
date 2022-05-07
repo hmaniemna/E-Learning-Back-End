@@ -15,13 +15,13 @@ import java.util.Collection;
 @Table(name="Groupes")
 public class Groupe implements Serializable {
     /**
-<<<<<<< HEAD
+     <<<<<<< HEAD
      *
      */
     private static final long serialVersionUID = 1L;
 
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long IdG;
 
@@ -37,20 +37,26 @@ public class Groupe implements Serializable {
     @Column(name="studentsG")
     @OneToMany(mappedBy ="group",fetch = FetchType.LAZY)
     private Collection<Student> studentss;
+    
+    // the list of courses of that group
+  //@JsonIgnore
+    @OneToMany(targetEntity = Course.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="group_course",referencedColumnName = "IdG")
+    private Collection<Course> coursesG;
 
 
     /**
      * Group courses. (Only the current year courses.)
-     */
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "group_course",
-            joinColumns = { @JoinColumn(name = "studentId") },
-            inverseJoinColumns = { @JoinColumn(name = "courseId"),
-            }
-    )
-    private Collection<Course> coursesG;
+     
+     @JsonIgnore
+     @ManyToMany
+     @JoinTable(
+     name = "group_course",
+     joinColumns = { @JoinColumn(name = "studentId") },
+     inverseJoinColumns = { @JoinColumn(name = "courseId"),
+     }
+     )
+     private Collection<Course> coursesG;*/
 
 
 
@@ -99,14 +105,12 @@ public class Groupe implements Serializable {
 
 
     public Collection<Course> getCoursesG() {
-        return coursesG;}
+     return coursesG;}
 
 
+     public void setCoursesG(Collection<Course> coursesG) {
+     this.coursesG = coursesG;
 
-    public void setCoursesG(Collection<Course> coursesG) {
-        this.coursesG = coursesG;
-    }
+}
 
-
-   
 }

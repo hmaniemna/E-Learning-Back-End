@@ -3,6 +3,7 @@ package ElearningBack.Service;
 import java.util.List;
 import java.util.Optional;
 
+import ElearningBack.model.Doc;
 import ElearningBack.model.Teacher;
 import ElearningBack.model.Test;
 import ElearningBack.repository.TestRepository;
@@ -11,30 +12,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.Date ;
 import java.io.IOException;
-
-
+import ElearningBack.repository.DocRepository;
+import org.springframework.util.StringUtils ;
+import java.util.stream.Stream;
+@Service
 public class DocStorageService {
     @Autowired
-    private TestRepository docRepository;
-    public Test saveFile(MultipartFile file) {
-        String testname = file.getOriginalFilename();
-        Date start_Date = null;
-        String duration = null;
-        //Teacher teacher = null;
-        try {
-            Test test = new Test( start_Date , duration, file.getBytes() ,  testname ,file.getContentType());
-            return docRepository.save(test);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    private DocRepository docRepository;
+
+    public Doc store(MultipartFile file) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        Doc File = new Doc(fileName, file.getContentType(), file.getBytes());
+
+        return docRepository.save(File);
     }
-    public Optional<Test> getFile(Integer fileId) {
-        return docRepository.findById(Long.valueOf(fileId));
+
+
+    public Stream<Doc> getAllDoc() {
+        return docRepository.findAll().stream();
     }
-    public List<Test> getFiles(){
-        return docRepository.findAll();
+
+
+    public Doc getDoc(Long id) {
+        return docRepository.findById(id).get();
     }
 }
 

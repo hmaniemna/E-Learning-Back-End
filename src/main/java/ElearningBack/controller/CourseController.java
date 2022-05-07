@@ -40,6 +40,41 @@ public class CourseController {
                 .orElseThrow(() -> new ResourceNotFoundException("course does not exist with this id: " + id));
         return ResponseEntity.ok(course);
     }
+    
+    
+    //return the list of courses of a specific Teacher
+    @GetMapping("/courselistT/{teacherid}")
+    public ResponseEntity<?> getCourseByteacherId(@PathVariable Long teacherid) {
+        System.out.println(teacherid);
+
+
+        List<Course> course = courseRepository.getcoursebyteacher(teacherid);
+        //.orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + idS));
+        System.out.println(course);
+        //if (student.getPassword().equals(password))
+        return ResponseEntity.ok(course);
+        //else
+        //return (ResponseEntity<?>) ResponseEntity.internalServerError();**/
+
+    }
+    
+    
+    //return the list of courses of a specific Student
+    @GetMapping("/courselistS/{studentid}")
+    public ResponseEntity<?> getCourseByStudentId(@PathVariable Long studentid) {
+        System.out.println(studentid);
+
+
+        List<Course> course = courseRepository.getcoursebystudent(studentid);
+        //.orElseThrow(() -> new ResourceNotFoundException("Student not exist with id :" + idS));
+        System.out.println(course);
+        //if (student.getPassword().equals(password))
+        return ResponseEntity.ok(course);
+        //else
+        //return (ResponseEntity<?>) ResponseEntity.internalServerError();**/
+
+    }
+    
 
     //update course rest api
     @PutMapping("/courses/{id}")
@@ -48,8 +83,9 @@ public class CourseController {
                 .orElseThrow(() -> new ResourceNotFoundException("course not exists wih id :" + id));
 
         course.setTitle(courseDetails.getTitle());
-        //course.setYear(courseDetails.getYear());
-        course.setTeacher(courseDetails.getTeacher());
+        course.setYear(courseDetails.getYear());
+       // course.setTeacher(courseDetails.getTeacher());
+        course.setDescription(courseDetails.getDescription());
 
         Course updatedCourse = courseRepository.save(course);
         return ResponseEntity.ok(updatedCourse);

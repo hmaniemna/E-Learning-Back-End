@@ -41,7 +41,7 @@ public class GroupeController {
                 .orElseThrow(() -> new ResourceNotFoundException("group does not exist with this id: "+ id));
         return ResponseEntity.ok(groupe);
     }
-    
+
     //update group rest api
     @PutMapping("/groups/{id}")
     public ResponseEntity<Groupe> updateStudent( @PathVariable Long id,@Valid @RequestBody Groupe groupDetails) {
@@ -68,3 +68,4 @@ public class GroupeController {
     }
 
 }
+
